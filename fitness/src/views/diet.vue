@@ -27,7 +27,7 @@
               </v-card>
           </v-flex>
           <v-flex xs6 sm6 md6>
-            <v-card class="mx-auto" max-width="600"  style="cursor:pointer" href="/oldage">
+            <v-card class="mx-auto" max-width="600"  style="cursor:pointer" href="/elder">
                 <v-img class="white--text align-end" height="200px" src="../assets/gym3.jpg">
                 <v-card-title style="font-size:26px;">Elder People Diet</v-card-title>
                 </v-img>

@@ -38,6 +38,26 @@ Vue.use(VueRouter)
     name: 'Vegan',
     component: () => import(/* webpackChunkName: "about" */ '../views/vegan.vue')
   },
+  {
+    path: '/male',
+    name: 'Vegan',
+    component: () => import(/* webpackChunkName: "about" */ '../views/male.vue')
+  },
+  {
+    path: '/female',
+    name: 'Vegan',
+    component: () => import(/* webpackChunkName: "about" */ '../views/female.vue')
+  },
+  {
+    path: '/children',
+    name: 'Vegan',
+    component: () => import(/* webpackChunkName: "about" */ '../views/kid.vue')
+  },
+  {
+    path: '/elder',
+    name: 'Vegan',
+    component: () => import(/* webpackChunkName: "about" */ '../views/elder.vue')
+  },
 ]
 
 const router = new VueRouter({
