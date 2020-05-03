@@ -12,6 +12,7 @@
 
     <v-card-text class="headline font-weight-bold">
         {{item.Job}}
+        {{item.Name}}
     </v-card-text>
     <v-icon class="ml-4">mdi-map</v-icon>
     <span xs-small class="subheading">{{item.Location}}</span>
@@ -26,7 +27,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{item.name}}</v-list-item-title>
+          <v-list-item-title></v-list-item-title>
         </v-list-item-content>
 
         <v-row
