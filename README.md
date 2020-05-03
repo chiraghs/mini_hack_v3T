@@ -7,10 +7,22 @@
 ![Product Gif](/images/home.jpeg)
 
 
-I have created it thinking of learning fetch api calls.
 
 It contains.
 --home Image above 
+------------------------------------------------------------
+
+--diet 
+![Product Gif](/images/diet.jpeg)
+
+------------------------------------------------------------
+
+--dietplan 
+![Product Gif](/images/dietplan.jpeg)
+
+
+------------------------------------------------------------
+
 
 --store Page -- real time from firebase database
 ![Product Gif](/images/store.jpeg)
