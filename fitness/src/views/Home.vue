@@ -1,17 +1,17 @@
 <template>
   <div id="home" class="grey darken-4">
     <v-parallax
-    height="500"
+    height="600"
     src="../assets/hero1.jpg"
     >
       <div class="hero text" style="margin-left:100px;">
         <h1 style="font-size:40px">Keep Your Body</h1>
-        <h1 style="margin-left:20px;font-size:50px">FIT & <span style="color:#8B5E3C">STRONG</span></h1>
-        <v-layout row mx-4>
-          <v-flex xs4 sm3 md1>
+        <h1 style="font-size:50px">FIT & <span style="color:#8B5E3C">STRONG</span></h1>
+        <v-layout row mx-1>
+          <v-flex xs3 sm3 md1 mx-2>
             <v-btn depressed small class="white--text" color="#8B5E3C" href="/consult">Consult</v-btn>
           </v-flex>
-          <v-flex xs4 md4>
+          <v-flex xs4 md1>
             <v-btn depressed small class="white--text" color="#8B5E3C" href="/store">Store</v-btn>
           </v-flex>
         </v-layout>
@@ -41,6 +41,10 @@
     <Diet class="ma-6"/>
   </div>
 
+  <div class="section3">
+    <Gymforms/>
+  </div>
+
 
   </div>
 </template>
@@ -54,6 +58,7 @@
     },
     components: {
       Diet: () => import('@/components/Diet'),
+      Gymforms: () => import('@/components/gymform'),
     }
   }
 </script>

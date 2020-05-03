@@ -5,14 +5,20 @@
       <img alt="Vue logo" src="../assets/logo.png" height="45" width="45"
       link router :to="links[0].route">
 
+      <v-layout row wrap class="mx-11 pa-1">
+        <v-flex v-for="(navitem,i) in navitems" :key="i" class="white--text" style="cursor:pointer;" >
+          <div ><a :href="navitem.rout" id="navitem">{{navitem.text}}</a></div>
+        </v-flex>
+      </v-layout>
+
       <v-flex class="mx-4">
-    </v-flex>
+      </v-flex>
 
       <v-spacer></v-spacer>
 
 
       <v-btn icon v-model="drawer" @click="drawer =!drawer">
-        <v-icon class="white--text">mdi-menu</v-icon>
+        <v-icon class="white--text">mdi-menu-open</v-icon>
       </v-btn>
     </v-toolbar>
 
@@ -76,6 +82,15 @@ export default {
                      { icon: 'mdi-home-outline', text: 'Home', route: '/' },
                      { icon: 'mdi-doctor', text: 'Consult', route: '/consult' },
                      { icon: 'mdi-storefront-outline', text: 'Store', route: '/store' },
+                     { icon: 'mdi-food-apple-outline', text: 'Diet', route: '/diet' },
+                     { icon: 'mdi-dumbbell', text: 'Gyms Near', route: '/diet' },
+                     { icon: 'mdi-shield-account-outline', text: 'Trainer', route: '/trainer' },
+            ],
+            navitems:[
+                      {text: 'Consult', rout: '/consult'},
+                      {text: 'Store', rout: '/store'},
+                      {text: 'Diet', rout: '/diet'},
+                      {text: 'Trainer', rout: '/trainer'},
             ],
         right: true,
         miniVariant: false,
@@ -91,3 +106,15 @@ export default {
 
 }
 </script>
+
+<style scoped>
+
+#navitem{
+  color: white;
+  text-decoration: none;
+  transition: 0.2s ease-in;
+}
+#navitem:hover {
+  color: #8B5E3C
+}
+</style>
