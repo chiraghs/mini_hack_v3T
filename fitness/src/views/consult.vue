@@ -11,10 +11,10 @@
   >
 
     <v-card-text class="headline font-weight-bold">
-        Dermatologist
+        {{item.Job}}
     </v-card-text>
     <v-icon class="ml-4">mdi-map</v-icon>
-    <span xs-small class="subheading">Msr Nagar, Bangalore</span>
+    <span xs-small class="subheading">{{item.Location}}</span>
 
     <v-card-actions>
       <v-list-item class="grow">
@@ -26,7 +26,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>Evan</v-list-item-title>
+          <v-list-item-title>{{item.name}}</v-list-item-title>
         </v-list-item-content>
 
         <v-row
@@ -34,7 +34,7 @@
           justify="end"
         >
           <v-icon class="mr-1">mdi-phone</v-icon>
-          <span class="subheading mr-2">9380939280</span>
+          <span class="subheading mr-2">{{item.Phone}}</span>
         </v-row>
       </v-list-item>
     </v-card-actions>
@@ -52,33 +52,29 @@
 </template>
 
 <script>
+import db from '@/fb'
   export default {
     data () {
       return {
-          items: [
-          {
-            src: 'gym1.jpg', text: 'Gyms Near', subtext: 'Healthy Recipes', route: '/gymnear'
-          },
-          {
-            src: 'gym2.jpg', text: 'Online Therapy', subtext: 'feel Good', route: '/onlinetherapy'
-          },
-          {
-            src: 'gym6.jpg', text: 'Trainer', subtext: 'Sweat Achieve',  route: '/trainer'
-          },
-          {
-            src: 'gym8.jpg', text: 'Commit Track', subtext: 'to be fit', route: '/committrack'
-          },
-           {
-            src: 'diet3.jpg', text: 'Eat Good', subtext: 'Sweat Achieve', route: '/eatgood'
-          },
-          {
-            src: 'diet4.jpg', text: 'Fit or Not', subtext: 'to be fit', route: '/fitornot'
-          },
-        ],
+          items: [ ],
       }
     },
     components: {
       Diet: () => import('@/components/Diet'),
+    },
+    created() {
+      db.collection('doctor').onSnapshot(res => {
+        const changes = res.docChanges();
+
+        changes.forEach(change => {
+          if(change.type === 'added'){
+            this.items.push({
+              ...change.doc.data(),
+              id: change.doc.id
+            })
+          }
+        })
+      })
     }
   }
 </script>

@@ -13,12 +13,13 @@
     <v-img
       class="white--text align-end"
       height="200px"
-      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+      :src="item.imagurl"
     >
     </v-img>
 
     <v-card-subtitle v-if="item.instock" class="pb-0">In Stock</v-card-subtitle>
-    <v-card-subtitle v-else class="pb-0">No Stock</v-card-subtitle>
+    <v-card-subtitle v-else class="pb-0">{{item.name}}</v-card-subtitle>
+    <v-card-subtitle class="pb-0">Rs {{item.price}}</v-card-subtitle>
 
     <v-card-text class="text--primary">
       <div>{{item.text}}</div>
@@ -51,39 +52,34 @@
 </template>
 
 <script>
+import db from '@/fb'
   export default {
     data () {
       return {
-          items: [
-          {
-            src: 'gym1.jpg', text: 'Gyms Near', subtext: 'Healthy Recipes', route: '/gymnear', instock: true
-          },
-          {
-            src: 'gym2.jpg', text: 'Online Therapy', subtext: 'feel Good', route: '/onlinetherapy', instock: false
-          },
-          {
-            src: 'gym6.jpg', text: 'Trainer', subtext: 'Sweat Achieve',  route: '/trainer', instock: true
-          },
-          {
-            src: 'gym8.jpg', text: 'Commit Track', subtext: 'to be fit', route: '/committrack', instock: true
-          },
-           {
-            src: 'diet3.jpg', text: 'Eat Good', subtext: 'Sweat Achieve', route: '/eatgood', instock: false
-          },
-          {
-            src: 'diet4.jpg', text: 'Fit or Not', subtext: 'to be fit', route: '/fitornot', instock: true
-          },
-          {
-            src: 'gym1.jpg', text: 'Gyms Near', subtext: 'Healthy Recipes', route: '/gymnear', instock: true
-          },
-          {
-            src: 'gym2.jpg', text: 'Online Therapy', subtext: 'feel Good', route: '/onlinetherapy', instock: false
-          }
-        ],
+          items: [  ],
       }
+    },
+    methods: {
+        /* getImgLink(pic){
+            return require('../assets/' + pic)
+        } */
     },
     components: {
       Dietstore: () => import('@/components/StoreSlider'),
+    },
+    created() {
+      db.collection('store').onSnapshot(res => {
+        const changes = res.docChanges();
+
+        changes.forEach(change => {
+          if(change.type === 'added'){
+            this.items.push({
+              ...change.doc.data(),
+              id: change.doc.id
+            })
+          }
+        })
+      })
     }
   }
 </script>
