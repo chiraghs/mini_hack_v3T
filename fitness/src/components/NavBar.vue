@@ -2,19 +2,82 @@
     <nav>
 
     <v-toolbar flat class="grey darken-4" >
-      <img alt="Vue logo" src="../assets/logo.png" height="45" width="45"
-      link router :to="links[0].route">
+      <a href="/" style="cursor:pointer;"><img alt="Vue logo" src="../assets/logo.png" height="45" width="45" ></a>
 
-      <v-layout row wrap class="mx-11 pa-1">
-        <v-flex v-for="(navitem,i) in navitems" :key="i" class="white--text" style="cursor:pointer;" >
+
+      <v-layout id="navmenu" row wrap class="mx-11 pa-1">
+        <v-flex v-for="(navitem,i) in navitems" :key="i" class="white--text" style="cursor:pointer;">
           <div ><a :href="navitem.rout" id="navitem">{{navitem.text}}</a></div>
         </v-flex>
       </v-layout>
 
+      <v-dialog v-model="dialog" persistent max-width="600px">
+      <template v-slot:activator="{ on }">
+        <v-btn icon v-model="drawer" v-on="on" class="white--text">
+          <v-icon left class="white--text">mdi-account-circle</v-icon>Contact
+        </v-btn>
+      </template>
+      <v-card dark>
+        <v-card-title>
+          <span class="headline">User Profile</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field label="First name*" required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field label="Last name" ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field
+                  label="Phone Number*" hint="we use your Phone number to contact you"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="Email*" required hint="we use your Email to contact you"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="4" md="4">
+                <v-text-field label="Weight" required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="4" md="4">
+                <v-text-field label="Height" ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-select dark class="dark"
+                  :items="['0-17', '18-29', '30-54', '54+']"
+                  label="Age*"
+                  required
+                ></v-select>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-autocomplete color="grey"
+                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                  label="Interests"
+                  multiple dark
+                ></v-autocomplete>
+              </v-col>
+            </v-row>
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">Submit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+      <v-spacer></v-spacer>
+
+
       <v-flex class="mx-4">
       </v-flex>
 
-      <v-spacer></v-spacer>
+
 
 
       <v-btn icon v-model="drawer" @click="drawer =!drawer">
@@ -77,13 +140,14 @@
 export default {
     data(){
         return{
-            drawer:false,
+            drawer: false,
+            dialog: false,
             links:[
                      { icon: 'mdi-home-outline', text: 'Home', route: '/' },
                      { icon: 'mdi-doctor', text: 'Consult', route: '/consult' },
                      { icon: 'mdi-storefront-outline', text: 'Store', route: '/store' },
                      { icon: 'mdi-food-apple-outline', text: 'Diet', route: '/diet' },
-                     { icon: 'mdi-dumbbell', text: 'Gyms Near', route: '/diet' },
+                     { icon: 'mdi-dumbbell', text: 'Gyms Near', route: '/gymnear' },
                      { icon: 'mdi-shield-account-outline', text: 'Trainer', route: '/trainer' },
             ],
             navitems:[
@@ -116,5 +180,10 @@ export default {
 }
 #navitem:hover {
   color: #8B5E3C
+}
+@media only screen and (max-width: 650px) {
+  #navmenu {
+    visibility: hidden;
+  }
 }
 </style>
